@@ -1,0 +1,15 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using YuzeToolkit.BehaviorTree.Runtime;
+#ROOTNAMESPACEBEGIN#
+[System.Serializable]
+[AddTypeMenu("Conditional/#SCRIPTNAME#")]
+public class #SCRIPTNAME# : Conditional
+{
+    public override bool IsConditional()
+    {
+        throw new System.NotImplementedException();
+    }
+}
+#ROOTNAMESPACEEND#

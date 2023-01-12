@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78fef9347bab4f568b6287a0c914d754, type: 3}
+  m_Name: BehaviorTreeSettings
+  m_EditorClassIdentifier: 
+  behaviourTreeXml: {fileID: 9197481963319205126, guid: 963ed2bf21c6e574585468527d7ac21d, type: 3}
+  behaviourTreeUss: {fileID: 7433441132597879392, guid: 5754e398c983ed146a88158702a3c172, type: 3}
+  nodeXml: {fileID: 9197481963319205126, guid: 882b77987a8e5a040af5204663a0693b, type: 3}
+  nodeUss: {fileID: 7433441132597879392, guid: 40134fca47fa9fe48a5a8d1307cd4934, type: 3}
+  behaviorTreeSo: {fileID: 11400000, guid: 0f2341e3c9576b3418d7ec42b6c86f6f, type: 2}
+  level: 0
+  defaultSoSavePath: Assets
+  defaultSoName: NewBehaviorTreeSo

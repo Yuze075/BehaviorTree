@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9139992880638957087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14ff47958611480999226f8ef8252c7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sharedVariables: []
+  describe: BlackBoardSo
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45cea247c03d7de42a1c0d849b39492e, type: 3}
+  m_Name: NewBehaviorTreeSo
+  m_EditorClassIdentifier: 
+  blackBoardSo: {fileID: -9139992880638957087}
+  root:
+    rid: 1053436874591306163
+  _nodes:
+  - rid: 1053436874591306163
+  - rid: 1053436874591306164
+  describe: BehaviorTree
+  viewPosition: {x: 200, y: 300, z: 0}
+  viewScale: {x: 1, y: 1, z: 1}
+  references:
+    version: 2
+    RefIds:
+    - rid: 1053436874591306163
+      type: {class: Root, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        position: {x: 0, y: 0}
+        guid: f2614215-30a0-4d9a-8dc2-e24785a60693
+        description: this is a description
+        _child:
+          rid: 1053436874591306164
+    - rid: 1053436874591306164
+      type: {class: DebugLog, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        position: {x: 0, y: 157}
+        guid: 0d38ee5c-1a2f-4bac-9857-2ec5897248c3
+        description: this is a description
+        log:
+          name: 
+          variable: 
+        logType: 0

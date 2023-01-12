@@ -1,0 +1,10 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+#ROOTNAMESPACEBEGIN#
+[CreateAssetMenu(menuName = ("YuzeTools/#SCRIPTNAME#"), fileName = ("#SCRIPTNAME#"))]
+public class #SCRIPTNAME# : ScriptableObject
+{
+    #NOTRIM#
+}
+#ROOTNAMESPACEEND#

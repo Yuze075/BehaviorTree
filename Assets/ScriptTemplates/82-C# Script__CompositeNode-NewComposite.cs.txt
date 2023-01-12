@@ -1,0 +1,15 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using YuzeToolkit.BehaviorTree.Runtime;
+#ROOTNAMESPACEBEGIN#
+[System.Serializable]
+[AddTypeMenu("Composite/#SCRIPTNAME#")]
+public class #SCRIPTNAME# : Composite
+{
+    protected override BtStatus OnUpdate()
+    {
+        throw new System.NotImplementedException();
+    }
+}
+#ROOTNAMESPACEEND#

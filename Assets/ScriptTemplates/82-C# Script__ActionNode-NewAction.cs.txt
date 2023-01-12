@@ -1,0 +1,15 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using YuzeToolkit.BehaviorTree.Runtime;
+#ROOTNAMESPACEBEGIN#
+[System.Serializable]
+[AddTypeMenu("Action/#SCRIPTNAME#")]
+public class #SCRIPTNAME# : Action
+{
+    protected override BtStatus OnUpdate()
+    {
+        throw new System.NotImplementedException();
+    }
+}
+#ROOTNAMESPACEEND#

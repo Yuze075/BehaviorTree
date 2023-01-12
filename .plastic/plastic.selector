@@ -1,0 +1,4 @@
+repository "BehaviorTree@yuzegamestudio@cloud.cn"
+  path "/"
+    br "/main"
+    co "/main"

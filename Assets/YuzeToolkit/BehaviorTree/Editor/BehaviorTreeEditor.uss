@@ -1,0 +1,15 @@
+GridBackground {
+    --grid-background-color: rgb(40, 40, 40);
+    --line-color: rgba(193, 196, 192, 0.1);
+    --thick-line-color: rgba(193, 196, 192, 0.1);
+    --spacing: 15;
+}
+
+.playMode {
+    height: 20px;
+    background-color: rgba(255, 148, 148, 255);
+}
+
+.editorMode {
+    height: 0;
+}

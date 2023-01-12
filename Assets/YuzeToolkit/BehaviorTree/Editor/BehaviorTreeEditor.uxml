@@ -1,0 +1,26 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/YuzeToolkit/BehaviorTree/Editor/BehaviorTreeEditor.uss?fileID=7433441132597879392&amp;guid=5754e398c983ed146a88158702a3c172&amp;type=3#BehaviorTreeEditor" />
+    <ui:VisualElement name="Toolbar" style="flex-direction: row; background-color: rgb(255, 148, 148);">
+        <ui:Button text="Reset" display-tooltip-when-elided="true" name="Reset" />
+        <ui:Button text="Pause" display-tooltip-when-elided="true" name="Pause" />
+    </ui:VisualElement>
+    <YuzeToolkit.BehaviorTree.Editor.SplitView fixed-pane-initial-dimension="250" style="flex-grow: 1;">
+        <ui:VisualElement name="LeftPanel" style="min-width: 100px; width: 300px;">
+            <ui:Label text="Inspector" display-tooltip-when-elided="true" name="Inspector" style="background-color: rgb(47, 47, 47);" />
+            <YuzeToolkit.BehaviorTree.Editor.InspectorView style="flex-grow: 1; min-width: auto; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="RightPanel" style="flex-grow: 1; width: auto; min-width: 200px;">
+            <YuzeToolkit.BehaviorTree.Editor.SplitView fixed-pane-initial-dimension="600" style="flex-basis: 250px;">
+                <ui:VisualElement name="LeftPanel" style="min-width: 100px;">
+                    <ui:Label text="TreeView" display-tooltip-when-elided="true" name="TreeView" style="background-color: rgb(47, 47, 47); -unity-text-align: middle-left;" />
+                    <YuzeToolkit.BehaviorTree.Editor.BehaviorTreeGraphView focusable="true" style="flex-grow: 2;" />
+                    <ui:VisualElement name="PauseCover" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; background-color: rgba(255, 255, 255, 0.24); visibility: hidden;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="RightPanel" style="flex-grow: 1; min-width: 100px; flex-basis: auto; flex-direction: column; flex-wrap: nowrap; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;">
+                    <ui:Label text="Blackboard" display-tooltip-when-elided="true" name="Blackboard" style="background-color: rgb(47, 47, 47);" />
+                    <YuzeToolkit.BehaviorTree.Editor.BlackBoardView style="flex-grow: 1; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px;" />
+                </ui:VisualElement>
+            </YuzeToolkit.BehaviorTree.Editor.SplitView>
+        </ui:VisualElement>
+    </YuzeToolkit.BehaviorTree.Editor.SplitView>
+</ui:UXML>
