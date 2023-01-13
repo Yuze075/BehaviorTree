@@ -1,7 +1,7 @@
 namespace YuzeToolkit.BehaviorTree.Runtime
 {
     /// <summary>
-    /// 复合节点<see cref="IComposite"/>, 有多个子节点<see cref="INode"/><br/>
+    /// 复合节点<see cref="Composite"/>, 有多个子节点<see cref="INode"/><br/>
     /// 通过<see cref="SelectIndex"/>确定调用的子节点<br/>
     /// <see cref="abortType"/>用于确定打断类型<br/>
     /// 必须实现<see cref="Node.OnUpdate"/>, 返回一个节点的状态
@@ -45,11 +45,6 @@ namespace YuzeToolkit.BehaviorTree.Runtime
             protected set => abortType = value;
         }
 
-#if UNITY_EDITOR
-        public override int UpperLimit => 0;
-        public sealed override int LowerLimit => 1;
-#endif
-
         #endregion
         
         protected sealed override void OnRun()
@@ -72,7 +67,7 @@ namespace YuzeToolkit.BehaviorTree.Runtime
 
         public virtual bool AbortUpdate()
         {
-            if (AbortType == AbortType.None || (AbortType == AbortType.LowerPriority && Status == BtStatus.Running))
+            if (AbortType == AbortType.None || (AbortType == AbortType.LowerPriority && State == BtState.Running))
             {
                 foreach (var node in _compositeNodes)
                 {
@@ -100,7 +95,7 @@ namespace YuzeToolkit.BehaviorTree.Runtime
                         }
                         case Conditional conditional:
                         {
-                            var beforeStatus = conditional.Status;
+                            var beforeStatus = conditional.State;
                             if (beforeStatus != conditional.Update())
                             {
                                 SelectIndex = Children.IndexOf(node);
@@ -116,11 +111,11 @@ namespace YuzeToolkit.BehaviorTree.Runtime
             return false;
         }
 
-        public sealed override BtStatus Update()
+        public sealed override BtState Update()
         {
             behaviorTree.UpdateNodes.Add(this);
 
-            if (Status != BtStatus.Running)
+            if (State != BtState.Running)
             {
                 OnStartUpdate();
             }
@@ -128,14 +123,14 @@ namespace YuzeToolkit.BehaviorTree.Runtime
             {
                 Children.ForEach(child =>
                 {
-                    if (child?.Status == BtStatus.Running)
+                    if (child?.State == BtState.Running)
                         child.Abort();
                 });
             }
 
-            Status = OnUpdate();
+            State = OnUpdate();
 
-            if (Status != BtStatus.Running)
+            if (State != BtState.Running)
             {
                 OnEndUpdate();
             }
@@ -144,16 +139,16 @@ namespace YuzeToolkit.BehaviorTree.Runtime
                 behaviorTree.RunningNodes.Add(this);
             }
 
-            return Status;
+            return State;
         }
 
         public sealed override void Abort()
         {
-            Status = BtStatus.Success;
+            State = BtState.Success;
             OnAbort();
             Children.ForEach(child =>
             {
-                if (child.Status == BtStatus.Running)
+                if (child.State == BtState.Running)
                     child.Abort();
             });
         }
@@ -165,7 +160,7 @@ namespace YuzeToolkit.BehaviorTree.Runtime
 
         public sealed override void Reset()
         {
-            Status = BtStatus.Success;
+            State = BtState.Success;
             OnReset();
             Children.ForEach(child => child.Reset());
         }

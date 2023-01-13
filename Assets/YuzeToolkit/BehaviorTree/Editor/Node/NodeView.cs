@@ -164,15 +164,15 @@ namespace YuzeToolkit.BehaviorTree.Editor
             RemoveFromClassList("failure");
             RemoveFromClassList("success");
             if (!Application.isPlaying) return;
-            switch (Node.Status)
+            switch (Node.State)
             {
-                case BtStatus.Running:
+                case BtState.Running:
                     AddToClassList("running");
                     break;
-                case BtStatus.Failure:
+                case BtState.Failure:
                     AddToClassList("failure");
                     break;
-                case BtStatus.Success:
+                case BtState.Success:
                     AddToClassList("success");
                     break;
             }

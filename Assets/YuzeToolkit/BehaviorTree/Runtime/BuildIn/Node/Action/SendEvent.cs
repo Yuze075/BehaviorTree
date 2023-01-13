@@ -8,7 +8,7 @@ namespace YuzeToolkit.BehaviorTree.Runtime
     [AddTypeMenu("Action/SendEvent")]
     public class SendEvent : Action
     {
-        protected override BtStatus OnUpdate()
+        protected override BtState OnUpdate()
         {
             throw new System.NotImplementedException();
         }

@@ -9,25 +9,25 @@ namespace YuzeToolkit.BehaviorTree.Runtime
             SelectIndex = 0;
         }
 
-        protected override BtStatus OnUpdate()
+        protected override BtState OnUpdate()
         {
             while (true)
             {
-                Status = SelectChild.Update();
-                switch (Status)
+                State = SelectChild.Update();
+                switch (State)
                 {
-                    case BtStatus.Failure:
-                        return BtStatus.Failure;
-                    case BtStatus.Running:
-                        return BtStatus.Running;
-                    case BtStatus.Success:
+                    case BtState.Failure:
+                        return BtState.Failure;
+                    case BtState.Running:
+                        return BtState.Running;
+                    case BtState.Success:
                         SelectIndex++;
                         break;
                 }
 
                 if (SelectIndex == Count)
                 {
-                    return BtStatus.Success;
+                    return BtState.Success;
                 }
             }
         }

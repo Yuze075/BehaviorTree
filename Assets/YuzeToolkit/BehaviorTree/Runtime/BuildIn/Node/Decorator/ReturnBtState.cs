@@ -6,10 +6,10 @@ namespace YuzeToolkit.BehaviorTree.Runtime
     {
         [UnityEngine.SerializeField] private SharedBool isSuccessState = new(true);
 
-        protected override BtStatus OnUpdate()
+        protected override BtState OnUpdate()
         {
-            return Child.Update() == BtStatus.Running ? BtStatus.Running :
-                isSuccessState.Value ? BtStatus.Success : BtStatus.Failure;
+            return Child.Update() == BtState.Running ? BtState.Running :
+                isSuccessState.Value ? BtState.Success : BtState.Failure;
         }
     }
 }

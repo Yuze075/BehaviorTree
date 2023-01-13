@@ -4,9 +4,9 @@ namespace YuzeToolkit.BehaviorTree.Runtime
     [AddTypeMenu("Action/KeepIdle")]
     public class KeepIdle : Action
     {
-        protected override BtStatus OnUpdate()
+        protected override BtState OnUpdate()
         {
-            return BtStatus.Running;
+            return BtState.Running;
         }
     }
 }

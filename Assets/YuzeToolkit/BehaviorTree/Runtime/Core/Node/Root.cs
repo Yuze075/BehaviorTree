@@ -9,9 +9,9 @@ namespace YuzeToolkit.BehaviorTree.Runtime
     {
         #region ProtectedFunction
 
-        protected override BtStatus OnUpdate()
+        protected override BtState OnUpdate()
         {
-            return Child?.Update() ?? BtStatus.Failure;
+            return Child?.Update() ?? BtState.Failure;
         }
 
         #endregion

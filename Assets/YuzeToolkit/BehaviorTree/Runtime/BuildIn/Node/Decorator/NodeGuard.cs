@@ -7,16 +7,16 @@ namespace YuzeToolkit.BehaviorTree.Runtime
         [UnityEngine.SerializeField] private SharedBool key = new();
         [UnityEngine.SerializeField] private SharedBool shouldWaitKey = new();
         private bool _isGetKey;
-        protected override BtStatus OnUpdate()
+        protected override BtState OnUpdate()
         {
-            if (key.Value && !_isGetKey) return shouldWaitKey.Value ? BtStatus.Running : BtStatus.Failure;
+            if (key.Value && !_isGetKey) return shouldWaitKey.Value ? BtState.Running : BtState.Failure;
             key.Value = true;
             _isGetKey = true;
-            Status = Child.Update();
-            if (Status == BtStatus.Running) return Status;
+            State = Child.Update();
+            if (State == BtState.Running) return State;
             key.Value = false;
             _isGetKey = false;
-            return Status;
+            return State;
         }
 
         protected override void OnAbort()

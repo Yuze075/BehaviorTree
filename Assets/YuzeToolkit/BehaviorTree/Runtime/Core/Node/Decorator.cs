@@ -1,7 +1,7 @@
 namespace YuzeToolkit.BehaviorTree.Runtime
 {
     /// <summary>
-    /// 修饰节点<see cref="IDecorator"/>, 只有一个子节点<see cref="INode"/><br/>
+    /// 修饰节点<see cref="Decorator"/>, 只有一个子节点<see cref="INode"/><br/>
     /// 需要实现<see cref="Node.OnUpdate"/>函数
     /// </summary>
     [System.Serializable]
@@ -16,27 +16,21 @@ namespace YuzeToolkit.BehaviorTree.Runtime
             set => _child = value;
 #endif
         }
-
-#if UNITY_EDITOR
-        public sealed override int UpperLimit => 1;
-        public override int LowerLimit => 1;
-#endif
-
         protected sealed override void OnRun()
         {
             _child.Run(gameObject, behaviorTree, blackBoard);
         }
 
-        public sealed override BtStatus Update()
+        public sealed override BtState Update()
         {
             return base.Update();
         }
 
         public sealed override void Abort()
         {
-            Status = BtStatus.Success;
+            State = BtState.Success;
             OnAbort();
-            if (Child.Status == BtStatus.Running)
+            if (Child.State == BtState.Running)
             {
                 Child.Abort();
             }
@@ -48,7 +42,7 @@ namespace YuzeToolkit.BehaviorTree.Runtime
 
         public sealed override void Reset()
         {
-            Status = BtStatus.Success;
+            State = BtState.Success;
             OnReset();
             _child.Reset();
         }

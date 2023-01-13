@@ -157,6 +157,7 @@ MonoBehaviour:
   viewScale: {x: 1, y: 1, z: 1}
   behaviorTreeSo: {fileID: 11400000, guid: 4c24356071825b140bfc4efa5f8f1b82, type: 2}
   _nodes: []
+  updateType: 1
   references:
     version: 2
     RefIds: []

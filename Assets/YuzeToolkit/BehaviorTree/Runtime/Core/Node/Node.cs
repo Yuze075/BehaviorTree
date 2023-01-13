@@ -15,17 +15,13 @@ namespace YuzeToolkit.BehaviorTree.Runtime
         [HideInInspector] public Vector2 position;
         [HideInInspector] public string guid = System.Guid.NewGuid().ToString();
         [TextArea] public string description = "this is a description";
-        public virtual int UpperLimit => -1;
-        public virtual int LowerLimit => -1;
-
-
 #endif
 
         #endregion
 
         #region Data
 
-        private BtStatus _status;
+        private BtState _state;
 
         public GameObject gameObject { get; private set; }
 
@@ -35,10 +31,10 @@ namespace YuzeToolkit.BehaviorTree.Runtime
 
         public int NodeId { get; private set; }
 
-        public BtStatus Status
+        public BtState State
         {
-            get => _status;
-            protected set => _status = value;
+            get => _state;
+            protected set => _state = value;
         }
 
         #endregion
@@ -77,18 +73,18 @@ namespace YuzeToolkit.BehaviorTree.Runtime
         protected abstract void OnRun();
 
         // ReSharper disable Unity.PerformanceAnalysis
-        public virtual BtStatus Update()
+        public virtual BtState Update()
         {
             behaviorTree.UpdateNodes.Add(this);
 
-            if (Status != BtStatus.Running)
+            if (_state != BtState.Running)
             {
                 OnStartUpdate();
             }
 
-            Status = OnUpdate();
+            _state = OnUpdate();
 
-            if (Status != BtStatus.Running)
+            if (_state != BtState.Running)
             {
                 OnEndUpdate();
             }
@@ -97,11 +93,11 @@ namespace YuzeToolkit.BehaviorTree.Runtime
                 behaviorTree.RunningNodes.Add(this);
             }
 
-            return Status;
+            return _state;
         }
 
         /// <summary>
-        /// 在<see cref="Update"/>之前调用, 并且在返回<see cref="BtStatus.Running"/>的情况下不会调用
+        /// 在<see cref="Update"/>之前调用, 并且在返回<see cref="BtState.Running"/>的情况下不会调用
         /// </summary>
         protected virtual void OnStartUpdate()
         {
@@ -109,13 +105,13 @@ namespace YuzeToolkit.BehaviorTree.Runtime
 
         /// <summary>
         /// <see cref="UnityEngine.MonoBehaviour"/>中于逻辑相关的更新函数, 每一帧更新<br/>
-        /// 需要返回一个<see cref="BtStatus"/>作为行为树的运行结果
+        /// 需要返回一个<see cref="BtState"/>作为行为树的运行结果
         /// </summary>
         /// <returns></returns>
-        protected abstract BtStatus OnUpdate();
+        protected abstract BtState OnUpdate();
 
         /// <summary>
-        /// 在<see cref="Update"/>之后调用, 并且在返回<see cref="BtStatus.Running"/>的情况下不会调用
+        /// 在<see cref="Update"/>之后调用, 并且在返回<see cref="BtState.Running"/>的情况下不会调用
         /// </summary>
         protected virtual void OnEndUpdate()
         {

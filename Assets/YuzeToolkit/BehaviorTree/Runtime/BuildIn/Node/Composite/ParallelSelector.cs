@@ -16,22 +16,22 @@ namespace YuzeToolkit.BehaviorTree.Runtime
             _isFirstUpdate = true;
         }
 
-        protected override BtStatus OnUpdate()
+        protected override BtState OnUpdate()
         {
             for (SelectIndex = 0; SelectIndex < Count; SelectIndex++)
             {
                 if (!_isFirstUpdate)
                 {
-                    if (SelectChild.Status != BtStatus.Running) continue;
+                    if (SelectChild.State != BtState.Running) continue;
                 }
 
-                Status = SelectChild.Update();
-                switch (Status)
+                State = SelectChild.Update();
+                switch (State)
                 {
-                    case BtStatus.Failure:
+                    case BtState.Failure:
                         _isFailure = true;
                         break;
-                    case BtStatus.Success:
+                    case BtState.Success:
                         _isSuccess = true;
                         break;
                 }
@@ -45,24 +45,24 @@ namespace YuzeToolkit.BehaviorTree.Runtime
                 {
                     Children.ForEach(child =>
                     {
-                        if (child.Status == BtStatus.Running)
+                        if (child.State == BtState.Running)
                         {
                             child.Abort();
                         }
                     });
-                    return BtStatus.Success;
+                    return BtState.Success;
                 }
 
                 if (_isFailure)
                 {
                     Children.ForEach(child =>
                     {
-                        if (child.Status == BtStatus.Running)
+                        if (child.State == BtState.Running)
                         {
                             child.Abort();
                         }
                     });
-                    return BtStatus.Failure;
+                    return BtState.Failure;
                 }
             }
             else
@@ -71,28 +71,28 @@ namespace YuzeToolkit.BehaviorTree.Runtime
                 {
                     Children.ForEach(child =>
                     {
-                        if (child.Status == BtStatus.Running)
+                        if (child.State == BtState.Running)
                         {
                             child.Abort();
                         }
                     });
-                    return BtStatus.Failure;
+                    return BtState.Failure;
                 }
 
                 if (_isSuccess)
                 {
                     Children.ForEach(child =>
                     {
-                        if (child.Status == BtStatus.Running)
+                        if (child.State == BtState.Running)
                         {
                             child.Abort();
                         }
                     });
-                    return BtStatus.Success;
+                    return BtState.Success;
                 }
             }
 
-            return BtStatus.Running;
+            return BtState.Running;
         }
 
         protected override void OnAbort()

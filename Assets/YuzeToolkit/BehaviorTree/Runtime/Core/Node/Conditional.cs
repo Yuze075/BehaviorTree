@@ -1,8 +1,8 @@
 namespace YuzeToolkit.BehaviorTree.Runtime
 {
     /// <summary>
-    /// 条件节点<see cref="IConditional"/>, 用于判断条件是否成立<br/>
-    /// 必须实现<see cref="IConditional.IsConditional"/>函数
+    /// 条件节点<see cref="Conditional"/>, 用于判断条件是否成立<br/>
+    /// 必须实现<see cref="Conditional.IsConditional"/>函数
     /// </summary>
     [System.Serializable]
     public abstract class Conditional : Node
@@ -11,19 +11,19 @@ namespace YuzeToolkit.BehaviorTree.Runtime
         {
         }
 
-        public sealed override BtStatus Update()
+        public sealed override BtState Update()
         {
             return base.Update();
         }
 
-        protected sealed override BtStatus OnUpdate()
+        protected sealed override BtState OnUpdate()
         {
-            return IsConditional() ? BtStatus.Success : BtStatus.Failure;
+            return IsConditional() ? BtState.Success : BtState.Failure;
         }
 
         public sealed override void Abort()
         {
-            Status = BtStatus.Success;
+            State = BtState.Success;
             OnAbort();
         }
 
@@ -33,7 +33,7 @@ namespace YuzeToolkit.BehaviorTree.Runtime
 
         public sealed override void Reset()
         {
-            Status = BtStatus.Success;
+            State = BtState.Success;
             OnReset();
         }
 

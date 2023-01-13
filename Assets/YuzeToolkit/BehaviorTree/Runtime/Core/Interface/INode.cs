@@ -25,7 +25,7 @@ namespace YuzeToolkit.BehaviorTree.Runtime
         /// <summary>
         /// <see cref="INode"/>节点的状态
         /// </summary>
-        public BtStatus Status { get; }
+        public BtState State { get; }
 
         #region TreeFunction
 
@@ -41,10 +41,10 @@ namespace YuzeToolkit.BehaviorTree.Runtime
 
         /// <summary>
         /// <see cref="UnityEngine.MonoBehaviour"/>中于逻辑相关的更新函数, 每一帧更新<br/>
-        /// 需要返回一个<see cref="BtStatus"/>作为行为树的运行结果
+        /// 需要返回一个<see cref="BtState"/>作为行为树的运行结果
         /// </summary>
         /// <returns></returns>
-        public BtStatus Update();
+        public BtState Update();
 
         /// <summary>
         /// 节点重设时调用的函数<br/>

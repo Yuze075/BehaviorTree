@@ -3,7 +3,7 @@
     /// <summary>
     /// BehaviorTree的行为状态
     /// </summary>
-    public enum BtStatus : byte
+    public enum BtState : byte
     {
         /// <summary>
         /// 操作成功
@@ -37,4 +37,12 @@
         Need,
         NotNeed
     }
+    
+    public enum UpdateType
+    {
+        Update,
+        FixedUpdate,
+        LateUpdate
+    }
+
 }

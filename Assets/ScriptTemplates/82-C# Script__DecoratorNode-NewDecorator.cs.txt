@@ -7,7 +7,7 @@ using YuzeToolkit.BehaviorTree.Runtime;
 [AddTypeMenu("Decorator/#SCRIPTNAME#")]
 public class #SCRIPTNAME# : Decorator
 {
-    protected override BtStatus OnUpdate()
+    protected override BtState OnUpdate()
     {
         throw new System.NotImplementedException();
     }

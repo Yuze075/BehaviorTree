@@ -12,18 +12,18 @@ namespace YuzeToolkit.BehaviorTree.Runtime
             _counter = 0;
         }
         
-        protected override BtStatus OnUpdate()
+        protected override BtState OnUpdate()
         {
-            switch (Status = Child.Update())
+            switch (State = Child.Update())
             {
-                case BtStatus.Running:
-                    return BtStatus.Running;
-                case BtStatus.Failure:
-                case BtStatus.Success:
+                case BtState.Running:
+                    return BtState.Running;
+                case BtState.Failure:
+                case BtState.Success:
                     _counter += 1;
                     break;
             }
-            return _counter >= count.Value ? Status : BtStatus.Running;
+            return _counter >= count.Value ? State : BtState.Running;
         }
 
         protected override void OnAbort()

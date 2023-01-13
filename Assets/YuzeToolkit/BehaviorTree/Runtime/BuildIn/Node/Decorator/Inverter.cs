@@ -4,14 +4,14 @@ namespace YuzeToolkit.BehaviorTree.Runtime
     [AddTypeMenu("Decorator/Inverter")]
     public class Inverter : Decorator
     {
-        protected override BtStatus OnUpdate()
+        protected override BtState OnUpdate()
         {
-            Status = Child.Update();
-            return Status switch
+            State = Child.Update();
+            return State switch
             {
-                BtStatus.Running => BtStatus.Running,
-                BtStatus.Success => BtStatus.Failure,
-                _ => BtStatus.Success
+                BtState.Running => BtState.Running,
+                BtState.Success => BtState.Failure,
+                _ => BtState.Success
             };
         }
     }

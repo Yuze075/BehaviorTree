@@ -14,9 +14,9 @@ namespace YuzeToolkit.BehaviorTree.Runtime
             _isUpdate = false;
         }
 
-        protected override BtStatus OnUpdate()
+        protected override BtState OnUpdate()
         {
-            if (conditional.Update() == BtStatus.Success)
+            if (conditional.Update() == BtState.Success)
             {
                 _isUpdate = true;
                 return Child.Update();
@@ -25,7 +25,7 @@ namespace YuzeToolkit.BehaviorTree.Runtime
             {
                 Child.Abort();
             }
-            return BtStatus.Failure;
+            return BtState.Failure;
         }
 
         protected override void OnAbort()

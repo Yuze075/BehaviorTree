@@ -8,7 +8,7 @@ namespace YuzeToolkit.BehaviorTree.Runtime
     {
         [SerializeField] private SharedGameObject resetGameObject = new();
 
-        protected override BtStatus OnUpdate()
+        protected override BtState OnUpdate()
         {
             if (resetGameObject.Value == null)
             {
@@ -27,7 +27,7 @@ namespace YuzeToolkit.BehaviorTree.Runtime
                 }
             }
 
-            return BtStatus.Success;
+            return BtState.Success;
         }
     }
 }

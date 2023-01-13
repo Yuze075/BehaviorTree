@@ -14,7 +14,7 @@ namespace YuzeToolkit.BehaviorTree.Runtime
         [UnityEngine.SerializeField] private SharedString log = new();
         [UnityEngine.SerializeField] private LogType logType = LogType.Log;
 
-        protected override BtStatus OnUpdate()
+        protected override BtState OnUpdate()
         {
             switch (logType)
             {
@@ -29,7 +29,7 @@ namespace YuzeToolkit.BehaviorTree.Runtime
                     break;
             }
             
-            return BtStatus.Success;
+            return BtState.Success;
         }
     }
 }

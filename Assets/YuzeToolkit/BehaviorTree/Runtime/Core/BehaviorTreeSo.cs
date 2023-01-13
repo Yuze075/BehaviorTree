@@ -17,6 +17,7 @@ namespace YuzeToolkit.BehaviorTree.Runtime
         [SerializeField] private BlackBoardSo blackBoardSo;
         [SerializeReference] private Root root = new();
         [SerializeReference] private List<INode> _nodes = new();
+        [SerializeField] private UpdateType updateType = UpdateType.Update;
         [SerializeField] private string describe = "BehaviorTree";
 
         public IBlackBoard blackBoard
@@ -29,6 +30,8 @@ namespace YuzeToolkit.BehaviorTree.Runtime
 
         public Root Root => root;
         public List<INode> Nodes => _nodes;
+        
+        public UpdateType UpdateType => updateType;
         public string Describe => describe;
 
 #if UNITY_EDITOR

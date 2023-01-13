@@ -7,7 +7,7 @@ namespace YuzeToolkit.BehaviorTree.Runtime
     public class StartTree : Action
     {
         [SerializeField] private SharedGameObject stopGameObject = new();
-        protected override BtStatus OnUpdate()
+        protected override BtState OnUpdate()
         {
             if (stopGameObject.Value == null)
             {
@@ -25,7 +25,7 @@ namespace YuzeToolkit.BehaviorTree.Runtime
                 }
             }
 
-            return BtStatus.Success;
+            return BtState.Success;
         }
     }
 }

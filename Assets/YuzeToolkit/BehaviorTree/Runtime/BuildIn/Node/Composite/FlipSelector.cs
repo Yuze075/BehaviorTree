@@ -29,32 +29,32 @@ namespace YuzeToolkit.BehaviorTree.Runtime
             _flipIndex = 0;
         }
 
-        protected override BtStatus OnUpdate()
+        protected override BtState OnUpdate()
         {
             while (true)
             {
-                Status = FlipChild.Update();
-                switch (Status)
+                State = FlipChild.Update();
+                switch (State)
                 {
-                    case BtStatus.Success:
-                        return BtStatus.Success;
-                    case BtStatus.Running:
-                        return BtStatus.Running;
-                    case BtStatus.Failure:
+                    case BtState.Success:
+                        return BtState.Success;
+                    case BtState.Running:
+                        return BtState.Running;
+                    case BtState.Failure:
                         _flipIndex++;
                         break;
                 }
 
                 if (_flipIndex == Count)
                 {
-                    return BtStatus.Failure;
+                    return BtState.Failure;
                 }
             }
         }
 
         protected override void OnEndUpdate()
         {
-            if (Status != BtStatus.Success) return;
+            if (State != BtState.Success) return;
             _temp = _flipNumber[_count - 1];
             _flipNumber[_count - 1] = _flipNumber[_flipIndex];
             _flipNumber[_flipIndex] = _temp;

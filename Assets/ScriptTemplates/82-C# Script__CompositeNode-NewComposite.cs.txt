@@ -7,7 +7,7 @@ using YuzeToolkit.BehaviorTree.Runtime;
 [AddTypeMenu("Composite/#SCRIPTNAME#")]
 public class #SCRIPTNAME# : Composite
 {
-    protected override BtStatus OnUpdate()
+    protected override BtState OnUpdate()
     {
         throw new System.NotImplementedException();
     }

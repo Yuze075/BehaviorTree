@@ -17,21 +17,21 @@ namespace YuzeToolkit.BehaviorTree.Runtime
             _isFirstUpdate = true;
         }
 
-        protected override BtStatus OnUpdate()
+        protected override BtState OnUpdate()
         {
             for (SelectIndex = 0; SelectIndex < Count; SelectIndex++)
             {
                 if(!_isFirstUpdate)
                 {
-                    if (SelectChild.Status != BtStatus.Running) continue;
+                    if (SelectChild.State != BtState.Running) continue;
                 }
-                Status = SelectChild.Update();
-                switch (Status)
+                State = SelectChild.Update();
+                switch (State)
                 {
-                    case BtStatus.Failure:
+                    case BtState.Failure:
                         _failureCounter++;
                         break;
-                    case BtStatus.Success:
+                    case BtState.Success:
                         _successCounter++;
                         break;
                 }
@@ -41,16 +41,16 @@ namespace YuzeToolkit.BehaviorTree.Runtime
 
             if (_successCounter > successCount.Value && successCount.Value != 0)
             {
-                return BtStatus.Success;
+                return BtState.Success;
             }
 
             if (_failureCounter > failureCount.Value && failureCount.Value != 0)
             {
-                return BtStatus.Failure;
+                return BtState.Failure;
             }
 
-            if (_successCounter + _failureCounter != Count) return BtStatus.Running;
-            return successCount.Value == 0 ? BtStatus.Success : BtStatus.Failure;
+            if (_successCounter + _failureCounter != Count) return BtState.Running;
+            return successCount.Value == 0 ? BtState.Success : BtState.Failure;
         }
 
         protected override void OnAbort()

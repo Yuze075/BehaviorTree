@@ -1,7 +1,7 @@
 namespace YuzeToolkit.BehaviorTree.Runtime
 {
     /// <summary>
-    /// 动作节点<see cref="IAction"/>, 作为叶子节点执行各种行为<br/>
+    /// 动作节点<see cref="Action"/>, 作为叶子节点执行各种行为<br/>
     /// 必须实现<see cref="Node.OnUpdate"/>, 返回一个节点的状态
     /// </summary>
     [System.Serializable]
@@ -11,14 +11,14 @@ namespace YuzeToolkit.BehaviorTree.Runtime
         {
         }
 
-        public sealed override BtStatus Update()
+        public sealed override BtState Update()
         {
             return base.Update();
         }
 
         public sealed override void Abort()
         {
-            Status = BtStatus.Success;
+            State = BtState.Success;
             OnAbort();
         }
 
@@ -28,7 +28,7 @@ namespace YuzeToolkit.BehaviorTree.Runtime
 
         public sealed override void Reset()
         {
-            Status = BtStatus.Success;
+            State = BtState.Success;
             OnReset();
         }
 

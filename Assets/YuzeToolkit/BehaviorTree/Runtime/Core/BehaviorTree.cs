@@ -20,8 +20,11 @@ namespace YuzeToolkit.BehaviorTree.Runtime
         #region IBehaviorTree
 
         [SerializeField] public BehaviorTreeSo behaviorTreeSo;
+        [SerializeReference] private List<INode> _nodes = new();
         private Root _root = new();
-        [SerializeReference]private List<INode> _nodes = new();
+        private List<INode> _updateNodes = new();
+        private List<INode> _runningNodes = new();
+        private UpdateType _updateType;
         private string _describe;
         private bool _pauseStatus;
 
@@ -39,6 +42,13 @@ namespace YuzeToolkit.BehaviorTree.Runtime
             private set => _nodes = value;
         }
 
+        public UpdateType UpdateType
+        {
+            get => _updateType;
+            private set => _updateType = value;
+        }
+
+
         public string Describe
         {
             get => _describe;
@@ -48,11 +58,9 @@ namespace YuzeToolkit.BehaviorTree.Runtime
         public bool PauseStatus { get; set; }
 
         public bool ResetStatus { get; set; }
-
-
-        public List<INode> UpdateNodes { get; } = new();
-
-        public List<INode> RunningNodes { get; } = new();
+        
+        public List<INode> UpdateNodes => _updateNodes;
+        public List<INode> RunningNodes => _runningNodes;
 
         public static int Id { get; set; }
 
@@ -65,13 +73,16 @@ namespace YuzeToolkit.BehaviorTree.Runtime
             if (behaviorTreeSo == null)
             {
                 Debug.LogError($"{Describe}: behaviorTreeSo is null!");
+                _pauseStatus = true;
+                PauseStatus = true;
                 return;
             }
 
             blackBoard = gameObject.GetComponent<BlackBoard>();
             var so = Instantiate(behaviorTreeSo);
-            Root = so.Root;
-            if(behaviorTreeSo.blackBoard != null)
+            _root = so.Root;
+            _updateType = so.UpdateType;
+            if (behaviorTreeSo.blackBoard != null)
             {
                 blackBoard.SharedVariables.AddRange(so.blackBoard.SharedVariables);
                 blackBoard.Describe = blackBoard.Describe + "\n" + so.blackBoard.Describe;
@@ -82,15 +93,55 @@ namespace YuzeToolkit.BehaviorTree.Runtime
             Id = 0;
             _root.Run(gameObject, this, blackBoard);
 
-            Nodes.ForEach(node => node.Awake());
+            _nodes.ForEach(node => node.Awake());
+        }
+
+        private void FixedUpdate()
+        {
+            switch (_updateType)
+            {
+                case UpdateType.Update:
+                case UpdateType.LateUpdate:
+                    _runningNodes.ForEach(node => node.FixedUpdate());
+                    break;
+                case UpdateType.FixedUpdate:
+                    UpdateNode();
+                    _runningNodes.ForEach(node => node.FixedUpdate());
+                    break;
+            }
         }
 
         private void Update()
         {
-#if UNITY_EDITOR
-            if (behaviorTreeSo == null) return;
-#endif
+            switch (_updateType)
+            {
+                case UpdateType.Update:
+                    UpdateNode();
+                    break;
+                case UpdateType.FixedUpdate:
+                case UpdateType.LateUpdate:
+                    _updateNodes.ForEach(node => node.LateUpdate());
+                    break;
+            }
+        }
 
+        private void LateUpdate()
+        {
+            switch (_updateType)
+            {
+                case UpdateType.Update:
+                case UpdateType.FixedUpdate:
+                    _updateNodes.ForEach(node => node.LateUpdate());
+                    break;
+                case UpdateType.LateUpdate:
+                    UpdateNode();
+                    _updateNodes.ForEach(node => node.LateUpdate());
+                    break;
+            }
+        }
+
+        private void UpdateNode()
+        {
             // 判断重设
             if (ResetStatus)
             {
@@ -101,13 +152,13 @@ namespace YuzeToolkit.BehaviorTree.Runtime
             // 判断暂停
             if (PauseStatus != _pauseStatus)
             {
-                RunningNodes.ForEach(node => node.Pause(PauseStatus));
+                _runningNodes.ForEach(node => node.Pause(PauseStatus));
                 _pauseStatus = PauseStatus;
             }
 
             // 清空节点
-            UpdateNodes.Clear();
-            RunningNodes.Clear();
+            _updateNodes.Clear();
+            _runningNodes.Clear();
 
             // 进行节点更新
             if (!_pauseStatus)
@@ -122,103 +173,93 @@ namespace YuzeToolkit.BehaviorTree.Runtime
 
         private void OnEnable()
         {
-            Nodes.ForEach(node => node.OnEnable());
+            _nodes.ForEach(node => node.OnEnable());
         }
 
         private void Start()
         {
-            Nodes.ForEach(node => node.Start());
-        }
-
-        private void FixedUpdate()
-        {
-            RunningNodes.ForEach(node => node.FixedUpdate());
+            _nodes.ForEach(node => node.Start());
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            Nodes.ForEach(node => node.OnTriggerEnter(other));
+            _updateNodes.ForEach(node => node.OnTriggerEnter(other));
         }
 
         private void OnTriggerExit(Collider other)
         {
-            Nodes.ForEach(node => node.OnTriggerExit(other));
+            _updateNodes.ForEach(node => node.OnTriggerExit(other));
         }
 
         private void OnTriggerEnter2D(Collider2D col)
         {
-            Nodes.ForEach(node => node.OnTriggerEnter2D(col));
+            _updateNodes.ForEach(node => node.OnTriggerEnter2D(col));
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            Nodes.ForEach(node => node.OnTriggerExit2D(other));
+            _updateNodes.ForEach(node => node.OnTriggerExit2D(other));
         }
 
         private void OnCollisionEnter(Collision collision)
         {
-            Nodes.ForEach(node => node.OnCollisionEnter(collision));
+            _updateNodes.ForEach(node => node.OnCollisionEnter(collision));
         }
 
         private void OnCollisionExit(Collision other)
         {
-            Nodes.ForEach(node => node.OnCollisionExit(other));
+            _updateNodes.ForEach(node => node.OnCollisionExit(other));
         }
 
         private void OnCollisionEnter2D(Collision2D col)
         {
-            Nodes.ForEach(node => node.OnCollisionEnter2D(col));
+            _updateNodes.ForEach(node => node.OnCollisionEnter2D(col));
         }
 
         private void OnCollisionExit2D(Collision2D other)
         {
-            Nodes.ForEach(node => node.OnCollisionExit2D(other));
+            _updateNodes.ForEach(node => node.OnCollisionExit2D(other));
         }
 
         private void OnTriggerStay(Collider other)
         {
-            RunningNodes.ForEach(node => node.OnTriggerStay(other));
+            _runningNodes.ForEach(node => node.OnTriggerStay(other));
         }
 
         private void OnTriggerStay2D(Collider2D other)
         {
-            RunningNodes.ForEach(node => node.OnTriggerStay2D(other));
+            _runningNodes.ForEach(node => node.OnTriggerStay2D(other));
         }
 
         private void OnCollisionStay(Collision collisionInfo)
         {
-            RunningNodes.ForEach(node => node.OnCollisionStay(collisionInfo));
+            _runningNodes.ForEach(node => node.OnCollisionStay(collisionInfo));
         }
 
         private void OnCollisionStay2D(Collision2D collision)
         {
-            RunningNodes.ForEach(node => node.OnCollisionStay2D(collision));
-        }
-
-        private void LateUpdate()
-        {
-            UpdateNodes.ForEach(node => node.LateUpdate());
+            _runningNodes.ForEach(node => node.OnCollisionStay2D(collision));
         }
 
         private void OnDrawGizmos()
         {
-            UpdateNodes.ForEach(node => node.OnDrawGizmos());
+            _updateNodes.ForEach(node => node.OnDrawGizmos());
         }
 
         private void OnDrawGizmosSelected()
         {
-            UpdateNodes.ForEach(node => node.OnDrawGizmosSelected());
+            _updateNodes.ForEach(node => node.OnDrawGizmosSelected());
         }
 
         private void OnDisable()
         {
-            Nodes.ForEach(node => node.OnDisable());
+            _nodes.ForEach(node => node.OnDisable());
         }
 
         private void OnDestroy()
         {
-            Nodes.ForEach(node => node.OnDestroy());
-            Nodes.Clear();
+            _nodes.ForEach(node => node.OnDestroy());
+            _nodes.Clear();
         }
 
         #endregion

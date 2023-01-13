@@ -7,7 +7,7 @@ using YuzeToolkit.BehaviorTree.Runtime;
 [AddTypeMenu("Conditional/#SCRIPTNAME#")]
 public class #SCRIPTNAME# : Conditional
 {
-    public override bool IsConditional()
+    protected override bool IsConditional()
     {
         throw new System.NotImplementedException();
     }
