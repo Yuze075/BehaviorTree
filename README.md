@@ -70,7 +70,7 @@
 ## 1. 接口和基类
 ### 1.1 INode
 
-  ![Toolbar](/mdAssets/Node.jpg)
+  ![Node](/mdAssets/Node.jpg)
   - 是所有Node都需要实现的接口
   - 里面包含了Node可以调用的所有公开函数
 ### 1.2 Node
@@ -81,28 +81,28 @@
 ### 2.1 `Awake/OnEnable/Start/OnDiseable/OnDestory`
   - 和MonoBehaviour对应函数相同
   - 在对应时刻调用
-### 2.2 Update
+### 2.2 `Update`
   - 行为树的逻辑更新函数，默认在MonoBehaviour.Update调用
   - 需要返回一个节点状态
     - BtState.Success：代表节点运行成功
     - BtState.Failure：代表节点运行失败
     - BtState.Running：代表节点正在运行
   - OnStartUpdate和OnEndUpdate在这次行为结束之前只执行一次（即返回Success或者Failure
-### 2.3 FixedUpdate&OnXXXStay
+### 2.3 `FixedUpdate&OnXXXStay`
   - 这两种函数只会去调用返回状态为BtState.Running的节点
   - 作用和和MonoBehaviour对应函数相同
   - 在对应时刻调用
-### 2.4 LateUpdate&OnXXXEnter&OnXXXExit
+### 2.4 `LateUpdate&OnXXXEnter&OnXXXExit`
   - 这两种函数只会去调用运行了的节点
   - 作用和和MonoBehaviour对应函数相同
   - 在对应时刻调用
-### 2.5 Reset
+### 2.5 `Reset`
   - 重设节点，让节点回到初始状态
-### 2.6 Pause(bool)
+### 2.6 `Pause(bool)`
   - 暂停或者解除暂停节点
   - 传入ture：暂停节点
   - 传入false：解除暂停
-### 2.7 Abort
+### 2.7 `Abort`
   - 打断节点运行，和Reset类似可以重置节点状态
   - 但是不强制，按照节点类型处理
 ## 3. 变量
@@ -124,11 +124,14 @@
 ### 4.4. Decorator
   - 修饰节点，只有一个子节点，对子节点进行修饰
 ## 5.构建一个行为树
-- 
+
+![start1](/mdAssets/start1.gif)
+
+![start2](/mdAssets/start2.gif)
 ## 6.实现节点
 - 插件内置了unity脚本模板，可以通过模板快速创建对应类型的节点
 
-![Toolbar](/mdAssets/Create.png)
+![Create](/mdAssets/Create.png)
 ### 6.1. Action
 ```C#
 using System.Collections;
@@ -264,21 +267,21 @@ namespace YuzeToolkit.BehaviorTree.Runtime
   - 点击右下角的“+”就可以在BlackBoard中添加变量
   - 点击null的下拉条，就可以对这个变量的类型进行分配
 
-  ![Toolbar](/mdAssets/Add.png)
+  ![Add](/mdAssets/Add.png)
 
-  ![Toolbar](/mdAssets/SelectType.png)
+  ![SelectType](/mdAssets/SelectType.png)
 ## 2. 设置变量
   - name：变量的名称，用于共享变量时的绑定
   - variabel：变量的值，用于存储对应类型的数据
 
-  ![Toolbar](/mdAssets/ReName.png)
+  ![ReName](/mdAssets/ReName.png)
 ## 3. 绑定变量
   - 在Node的Inspector面板中的变量会和BlackBoard中同类型的同名变量会绑定在一起
   - 绑定是通过反射自动完成的，无需手动操作
   - 如果变量没有名字则不会进行绑定
   - 绑定的值为BlackBoard的值，节点设置的值会被覆盖
 
-  ![Toolbar](/mdAssets/Bind.png)
+  ![Bind](/mdAssets/Bind.png)
 ## 4. 绑定动态创建的变量
   - 虽然不推荐这么做，但是这里展示一下操作方法
 ``` C#

@@ -1,3 +1,6 @@
+using System;
+using UnityEngine;
+
 namespace YuzeToolkit.BehaviorTree.Runtime
 {
     /// <summary>
@@ -7,12 +10,23 @@ namespace YuzeToolkit.BehaviorTree.Runtime
     [System.Serializable]
     public abstract class Conditional : Node
     {
+        private bool _isUpdate;
+        
+        public bool IsUpdate
+        {
+            get => _isUpdate;
+            set => _isUpdate = value;
+        }
+        
         protected sealed override void OnRun()
         {
+            behaviorTree.Conditionals.Add(this);
         }
 
         public sealed override BtState Update()
         {
+            if (_isUpdate) return State;
+            _isUpdate = true;
             return base.Update();
         }
 

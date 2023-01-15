@@ -1,0 +1,122 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45cea247c03d7de42a1c0d849b39492e, type: 3}
+  m_Name: PCell
+  m_EditorClassIdentifier: 
+  blackBoardSo: {fileID: 4929303649233006393}
+  root:
+    rid: 1053436917997633539
+  _nodes:
+  - rid: 1053436917997633539
+  - rid: 1053436917997633553
+  - rid: 1053436917997633554
+  - rid: 1053436917997633555
+  - rid: 1053436939101536812
+  - rid: 1053436939101536813
+  updateType: 1
+  describe: BehaviorTree
+  viewPosition: {x: 496, y: 62, z: 0}
+  viewScale: {x: 1, y: 1, z: 1}
+  references:
+    version: 2
+    RefIds:
+    - rid: 1053436917997633539
+      type: {class: Root, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        position: {x: 0, y: 0}
+        guid: 18d6ad81-6cf5-463c-a107-adc28b1b65f8
+        description: this is a description
+        _child:
+          rid: 1053436917997633553
+    - rid: 1053436917997633553
+      type: {class: Sequence, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        position: {x: 0, y: 178}
+        guid: 23cfa998-4219-4c79-ae83-7d6598538654
+        description: this is a description
+        abortType: 1
+        _children:
+        - rid: 1053436917997633554
+        - rid: 1053436917997633555
+        - rid: 1053436939101536812
+        - rid: 1053436939101536813
+    - rid: 1053436917997633554
+      type: {class: FindTagGameObject, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: -184, y: 307}
+        guid: 27bb68ff-1949-48ce-9d67-30fb1ad99d42
+        description: this is a description
+        tagGameObject:
+          name: tag
+          variable: {fileID: 0}
+        tag:
+          name: 
+          variable: Virus
+    - rid: 1053436917997633555
+      type: {class: MoveToGameObject, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: -20, y: 307}
+        guid: fb85afc7-5f59-4834-bc28-ddbf6509dd22
+        description: this is a description
+        tagGameObject:
+          name: tag
+          variable: {fileID: 0}
+        speed:
+          name: 
+          variable: 0.075
+    - rid: 1053436939101536812
+      type: {class: FindTagGameObject, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 150, y: 307}
+        guid: dee80cce-eaff-448b-b9e1-8fcb52df9f7b
+        description: this is a description
+        tagGameObject:
+          name: tag
+          variable: {fileID: 0}
+        tag:
+          name: 
+          variable: NotVirus
+    - rid: 1053436939101536813
+      type: {class: MoveToGameObject, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 300, y: 307}
+        guid: 5b6b2f1a-9652-445c-811e-359a9d58fbbf
+        description: this is a description
+        tagGameObject:
+          name: tag
+          variable: {fileID: 0}
+        speed:
+          name: 
+          variable: 0.075
+--- !u!114 &4929303649233006393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14ff47958611480999226f8ef8252c7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sharedVariables:
+  - rid: 1053436917997633602
+  describe: BlackBoardSo
+  references:
+    version: 2
+    RefIds:
+    - rid: 1053436917997633602
+      type: {class: SharedGameObject, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        name: tag
+        variable: {fileID: 0}

@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Antigen
+  - BCell
+  - NCell
+  - INCell
+  - PCell
+  - TCell
+  - Virus
+  - Point
+  - NotVirus
   layers:
   - Default
   - TransparentFX
@@ -40,4 +49,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Blackground
+    uniqueID: 3292022073
+    locked: 0
+  - name: Cell
+    uniqueID: 3157659905
+    locked: 0
+  - name: Virus
+    uniqueID: 814980247
     locked: 0

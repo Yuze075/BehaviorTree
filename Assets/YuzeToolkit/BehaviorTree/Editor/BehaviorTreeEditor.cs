@@ -69,7 +69,7 @@ namespace YuzeToolkit.BehaviorTree.Editor
 
         private void OnInspectorUpdate()
         {
-            _behaviorTreeGraphView?.UpdateNodeStates();
+            _behaviorTreeGraphView.UpdateNodeStates();
             if (_behaviorTreeSerializer.isSo) return;
             _pauseCover.visible = _behaviorTreeSerializer.behaviorTree.PauseStatus;
         }

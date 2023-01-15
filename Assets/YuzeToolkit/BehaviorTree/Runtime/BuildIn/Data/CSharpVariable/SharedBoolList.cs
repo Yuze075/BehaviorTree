@@ -13,6 +13,7 @@ namespace YuzeToolkit.BehaviorTree.Runtime
         
         public SharedBoolList()
         {
+            Value = new List<bool>();
         }
     }
 }

@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-1290842902844027024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14ff47958611480999226f8ef8252c7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sharedVariables:
+  - rid: 1053436917997633601
+  describe: BlackBoardSo
+  references:
+    version: 2
+    RefIds:
+    - rid: 1053436917997633601
+      type: {class: SharedGameObject, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        name: tag
+        variable: {fileID: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45cea247c03d7de42a1c0d849b39492e, type: 3}
+  m_Name: TCell
+  m_EditorClassIdentifier: 
+  blackBoardSo: {fileID: -1290842902844027024}
+  root:
+    rid: 1053436917997633539
+  _nodes:
+  - rid: 1053436917997633539
+  - rid: 1053436917997633556
+  - rid: 1053436917997633557
+  - rid: 1053436917997633558
+  updateType: 1
+  describe: BehaviorTree
+  viewPosition: {x: 183, y: 196, z: 0}
+  viewScale: {x: 1, y: 1, z: 1}
+  references:
+    version: 2
+    RefIds:
+    - rid: 1053436917997633539
+      type: {class: Root, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        position: {x: 40, y: -93}
+        guid: 18d6ad81-6cf5-463c-a107-adc28b1b65f8
+        description: this is a description
+        _child:
+          rid: 1053436917997633556
+    - rid: 1053436917997633556
+      type: {class: Sequence, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        position: {x: 40, y: 48}
+        guid: 104ec86d-fb27-4210-9a6f-d85f1cb7964f
+        description: this is a description
+        abortType: 1
+        _children:
+        - rid: 1053436917997633557
+        - rid: 1053436917997633558
+    - rid: 1053436917997633557
+      type: {class: FindTagGameObject, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: -94, y: 178}
+        guid: 1b8b5db8-2bc5-4d83-a5e9-7d6146b6325d
+        description: this is a description
+        tagGameObject:
+          name: tag
+          variable: {fileID: 0}
+        tag:
+          name: 
+          variable: INCell
+    - rid: 1053436917997633558
+      type: {class: MoveToGameObject, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 169, y: 178}
+        guid: 79221c33-b9b1-4a7d-bd3c-7ecd88c0ce0e
+        description: this is a description
+        tagGameObject:
+          name: tag
+          variable: {fileID: 0}
+        speed:
+          name: 
+          variable: 0.1

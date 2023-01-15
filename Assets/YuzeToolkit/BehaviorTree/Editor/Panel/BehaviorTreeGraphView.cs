@@ -176,6 +176,12 @@ namespace YuzeToolkit.BehaviorTree.Editor
                 nodeView?.SortChildren();
             });
             _behaviorTreeSerializer.Save();
+            if (_behaviorTreeSerializer.isSo)
+            {
+                EditorUtility.SetDirty(_behaviorTreeSerializer.behaviorTreeSo);
+            }
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
             return graphViewChange;
         }
 

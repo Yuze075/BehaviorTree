@@ -10,7 +10,7 @@ namespace YuzeToolkit.BehaviorTree.Runtime
         [Header("BlackBoard")] [SerializeReference, SubclassSelector]
         private List<ISharedVariable> _sharedVariables = new();
 
-        private readonly Dictionary<string, int> _sharedVariablesIndex = new();
+        private Dictionary<string, int> _sharedVariablesIndex = new();
         [SerializeField] private string describe = "BlackBoard";
         private bool _isInitialized;
 
@@ -44,7 +44,10 @@ namespace YuzeToolkit.BehaviorTree.Runtime
             var count = _sharedVariables.Count;
             for (var i = 0; i < count; i++)
             {
-                if (_sharedVariables[i] == null || string.IsNullOrEmpty(_sharedVariables[i].Name)) continue;
+                if (_sharedVariables[i] == null || string.IsNullOrEmpty(_sharedVariables[i].Name))
+                {
+                    continue;
+                }
                 if (_sharedVariablesIndex.TryGetValue(_sharedVariables[i].Name, out var index))
                 {
                     _sharedVariables[i].BindValue(_sharedVariables[index]);
@@ -54,13 +57,8 @@ namespace YuzeToolkit.BehaviorTree.Runtime
                     _sharedVariablesIndex.Add(_sharedVariables[i].Name, i);
                 }
             }
-
+            
             _isInitialized = true;
-        }
-
-        private void Awake()
-        {
-            InitializeBlackBoard();
         }
 
         #region UnityEditor

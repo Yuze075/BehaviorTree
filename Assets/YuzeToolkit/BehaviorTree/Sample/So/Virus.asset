@@ -1,0 +1,296 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45cea247c03d7de42a1c0d849b39492e, type: 3}
+  m_Name: Virus
+  m_EditorClassIdentifier: 
+  blackBoardSo: {fileID: 6416025279287434112}
+  root:
+    rid: 1053436917997633539
+  _nodes:
+  - rid: 1053436917997633539
+  - rid: 1053436917997633586
+  - rid: 1053436917997633587
+  - rid: 1053436917997633588
+  - rid: 1053436917997633589
+  - rid: 1053436917997633590
+  - rid: 1053436917997633591
+  - rid: 1053436917997633592
+  - rid: 1053436917997633593
+  - rid: 1053436917997633594
+  - rid: 1053436917997633597
+  - rid: 1053436917997633598
+  - rid: 1053436917997633599
+  - rid: 1053436939101536560
+  - rid: 1053436939101536561
+  - rid: 1053436939101536562
+  - rid: 1053436939101536564
+  - rid: 1053436939101536725
+  - rid: 1053436939101536727
+  - rid: 1053436939101536808
+  updateType: 1
+  describe: virus
+  viewPosition: {x: 943, y: 87, z: 0}
+  viewScale: {x: 0.65751624, y: 0.65751624, z: 1}
+  references:
+    version: 2
+    RefIds:
+    - rid: 1053436917997633539
+      type: {class: Root, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        position: {x: -23, y: -186}
+        guid: 18d6ad81-6cf5-463c-a107-adc28b1b65f8
+        description: 0
+        _child:
+          rid: 1053436917997633586
+    - rid: 1053436917997633586
+      type: {class: Selector, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        position: {x: -23.000046, y: -28.38499}
+        guid: 7aaddeb9-c656-4f81-bd03-96a195a3f3d8
+        description: 1
+        abortType: 2
+        _children:
+        - rid: 1053436917997633597
+        - rid: 1053436917997633593
+        - rid: 1053436917997633590
+        - rid: 1053436939101536560
+        - rid: 1053436917997633587
+    - rid: 1053436917997633587
+      type: {class: Sequence, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        position: {x: 542.9424, y: 119.00002}
+        guid: 1947685d-c72c-40d2-8b77-6aef60235efa
+        description: 5
+        abortType: 1
+        _children:
+        - rid: 1053436917997633588
+        - rid: 1053436917997633589
+    - rid: 1053436917997633588
+      type: {class: FindTagGameObject, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 712.99994, y: 249.00002}
+        guid: 14b9ff8b-3dc5-40c8-94fd-be3d452caef7
+        description: 5.1
+        tagGameObject:
+          name: tag
+          variable: {fileID: 0}
+        tag:
+          name: 
+          variable: NCell
+    - rid: 1053436917997633589
+      type: {class: MoveToGameObject, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 919.29224, y: 249.00002}
+        guid: ba4f68be-e752-4878-92fe-32a8ba540816
+        description: 5.2
+        tagGameObject:
+          name: tag
+          variable: {fileID: 0}
+        speed:
+          name: 
+          variable: 0.08
+    - rid: 1053436917997633590
+      type: {class: Sequence, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        position: {x: -98.000015, y: 118.99997}
+        guid: 3647565f-805d-4b9a-95cc-5458b5df6fcf
+        description: 4
+        abortType: 4
+        _children:
+        - rid: 1053436917997633591
+        - rid: 1053436917997633592
+    - rid: 1053436917997633591
+      type: {class: HasEnteredTrigger2D, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        position: {x: -213.00002, y: 249.00003}
+        guid: e9891758-40ef-42ac-8ece-a881ffc0cf8c
+        description: 4.1
+        tag:
+          name: 
+          variable: NCell
+        layer:
+          name: 
+          variable:
+            serializedVersion: 2
+            m_Bits: 0
+        collidedGameObject:
+          name: 
+          variable: {fileID: 0}
+        collisionMode: 1
+    - rid: 1053436917997633592
+      type: {class: DestroySelf, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: -62.999973, y: 249.00003}
+        guid: abd4214a-dbd5-45c9-8a6a-d15114584eb7
+        description: 4.2
+    - rid: 1053436917997633593
+      type: {class: Sequence, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        position: {x: -415.15677, y: 96.500015}
+        guid: 196dfc78-5567-401a-9e0e-091ba661e785
+        description: 2
+        abortType: 4
+        _children:
+        - rid: 1053436917997633594
+        - rid: 1053436939101536725
+        - rid: 1053436939101536808
+    - rid: 1053436917997633594
+      type: {class: HasEnteredTrigger2D, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        position: {x: -730.15686, y: 245.50003}
+        guid: 68a588cf-783e-4c62-af64-a322287f5cca
+        description: 2.1
+        tag:
+          name: 
+          variable: Antigen
+        layer:
+          name: 
+          variable:
+            serializedVersion: 2
+            m_Bits: 0
+        collidedGameObject:
+          name: 
+          variable: {fileID: 0}
+        collisionMode: 1
+    - rid: 1053436917997633597
+      type: {class: Sequence, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        position: {x: -1007.9999, y: 118.99999}
+        guid: 939e1d91-4017-4992-b995-86c28274512d
+        description: 3
+        abortType: 4
+        _children:
+        - rid: 1053436917997633598
+        - rid: 1053436917997633599
+    - rid: 1053436917997633598
+      type: {class: HasEnteredTrigger2D, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        position: {x: -1082.5942, y: 272.5}
+        guid: 973a75a1-af72-4550-84ea-a07104f3f74a
+        description: 3.1
+        tag:
+          name: 
+          variable: PCell
+        layer:
+          name: 
+          variable:
+            serializedVersion: 2
+            m_Bits: 0
+        collidedGameObject:
+          name: 
+          variable: {fileID: 0}
+        collisionMode: 1
+    - rid: 1053436917997633599
+      type: {class: DestroySelf, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: -931.5941, y: 272.5}
+        guid: 67f53aa6-0e8e-4f5f-ada0-b69216224965
+        description: 3.2
+    - rid: 1053436939101536560
+      type: {class: Sequence, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        position: {x: 172.18686, y: 118.99998}
+        guid: 76f9ba95-fbab-41fb-b5ef-9ed8d2c0a94a
+        description: this is a description
+        abortType: 1
+        _children:
+        - rid: 1053436939101536562
+        - rid: 1053436939101536561
+        - rid: 1053436939101536727
+    - rid: 1053436939101536561
+      type: {class: Cooldown, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        position: {x: 297.66595, y: 249.00003}
+        guid: 52ef492e-c6db-47da-a2f8-92911a151f41
+        description: this is a description
+        _child:
+          rid: 1053436939101536564
+        cooldownBeforeTime:
+          name: 
+          variable: 3
+        cooldownAfterTime:
+          name: 
+          variable: 0
+    - rid: 1053436939101536562
+      type: {class: IsTrue, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 126.9999, y: 249.00003}
+        guid: 2f886da3-8d9b-48ab-b49b-94d57c14df71
+        description: this is a description
+        boolValue:
+          name: b
+          variable: 0
+    - rid: 1053436939101536564
+      type: {class: SetBool, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 276.9999, y: 381.52087}
+        guid: 363d892f-c7b2-4ec2-bce5-5ab61f4e0dee
+        description: this is a description
+        beSetValue:
+          name: b
+          variable: 0
+        setValue:
+          name: 
+          variable: 0
+    - rid: 1053436939101536725
+      type: {class: ChangeTag, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: -580.15674, y: 245.50003}
+        guid: f150c424-22d9-4fae-b1a3-a29caa6595c5
+        description: this is a description
+        tag:
+          name: 
+          variable: NotVirus
+    - rid: 1053436939101536727
+      type: {class: ChangeTag, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 468.00003, y: 248.99997}
+        guid: 859b4bad-dc46-424b-aa67-634393bbc1f6
+        description: this is a description
+        tag:
+          name: 
+          variable: Virus
+    - rid: 1053436939101536808
+      type: {class: KeepIdle, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        position: {x: -415.15677, y: 245.50003}
+        guid: b2b9b412-fdee-4950-82e5-9323552e8c43
+        description: this is a description
+--- !u!114 &6416025279287434112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14ff47958611480999226f8ef8252c7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sharedVariables:
+  - rid: 1053436917997633600
+  - rid: 1053436939101536563
+  describe: BlackBoardSo
+  references:
+    version: 2
+    RefIds:
+    - rid: 1053436917997633600
+      type: {class: SharedGameObject, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        name: tag
+        variable: {fileID: 0}
+    - rid: 1053436939101536563
+      type: {class: SharedBool, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        name: b
+        variable: 1

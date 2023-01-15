@@ -1,22 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-9139992880638957087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14ff47958611480999226f8ef8252c7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sharedVariables: []
-  describe: BlackBoardSo
-  references:
-    version: 2
-    RefIds: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29,34 +12,105 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45cea247c03d7de42a1c0d849b39492e, type: 3}
   m_Name: NewBehaviorTreeSo
   m_EditorClassIdentifier: 
-  blackBoardSo: {fileID: -9139992880638957087}
+  blackBoardSo: {fileID: 1347686520583879850}
   root:
-    rid: 1053436874591306163
+    rid: 1053436942357364736
   _nodes:
-  - rid: 1053436874591306163
-  - rid: 1053436874591306164
-  updateType: 1
+  - rid: 1053436942357364736
+  - rid: 1053436942357364737
+  - rid: 1053436942357364738
+  - rid: 1053436942357364739
+  - rid: 1053436942357364740
+  - rid: 1053436942357364741
+  updateType: 0
   describe: BehaviorTree
-  viewPosition: {x: 200, y: 300, z: 0}
+  viewPosition: {x: 191, y: -36, z: 0}
   viewScale: {x: 1, y: 1, z: 1}
   references:
     version: 2
     RefIds:
-    - rid: 1053436874591306163
+    - rid: 1053436942357364736
       type: {class: Root, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
       data:
         position: {x: 0, y: 0}
-        guid: f2614215-30a0-4d9a-8dc2-e24785a60693
+        guid: 5529fe87-e5e2-417f-ab44-8ec21026c62c
         description: this is a description
         _child:
-          rid: 1053436874591306164
-    - rid: 1053436874591306164
+          rid: 1053436942357364737
+    - rid: 1053436942357364737
+      type: {class: Sequence, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        position: {x: 28, y: 175}
+        guid: ba0f175b-b88f-4da2-ad8b-a56d30ef7f10
+        description: this is a description
+        abortType: 1
+        _children:
+        - rid: 1053436942357364738
+        - rid: 1053436942357364739
+        - rid: 1053436942357364740
+    - rid: 1053436942357364738
       type: {class: DebugLog, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
       data:
-        position: {x: 0, y: 157}
-        guid: 0d38ee5c-1a2f-4bac-9857-2ec5897248c3
+        position: {x: -169.12003, y: 325}
+        guid: d02e8493-bd19-4466-aa2a-edbc5dac6b65
+        description: this is a description
+        log:
+          name: log
+          variable: 
+        logType: 1
+    - rid: 1053436942357364739
+      type: {class: WaitTime, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        position: {x: 28, y: 325}
+        guid: c9429d1b-d641-4dbb-a3d5-3630fdc005a4
+        description: this is a description
+        time:
+          name: 
+          variable: 3
+    - rid: 1053436942357364740
+      type: {class: Cooldown, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        position: {x: 204, y: 325}
+        guid: 0c49b753-36cc-4224-897e-12c3c3b2c817
+        description: this is a description
+        _child:
+          rid: 1053436942357364741
+        cooldownBeforeTime:
+          name: 
+          variable: 0
+        cooldownAfterTime:
+          name: 
+          variable: 5
+    - rid: 1053436942357364741
+      type: {class: DebugLog, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        position: {x: 213.88, y: 461}
+        guid: a6891519-121a-47b7-b9f6-d3c532866530
         description: this is a description
         log:
           name: 
-          variable: 
+          variable: 321
         logType: 0
+--- !u!114 &1347686520583879850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14ff47958611480999226f8ef8252c7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sharedVariables:
+  - rid: 1053436942357364742
+  describe: BlackBoardSo
+  references:
+    version: 2
+    RefIds:
+    - rid: 1053436942357364742
+      type: {class: SharedString, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        name: log
+        variable: 123

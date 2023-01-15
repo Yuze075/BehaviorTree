@@ -15,6 +15,7 @@ namespace YuzeToolkit.BehaviorTree.Runtime
 
         public SharedTransformList()
         {
+            Value = new List<Transform>();
         }
     }
 }

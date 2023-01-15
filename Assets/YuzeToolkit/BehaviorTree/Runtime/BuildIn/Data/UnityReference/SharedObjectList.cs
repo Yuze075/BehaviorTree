@@ -15,6 +15,7 @@ namespace YuzeToolkit.BehaviorTree.Runtime
 
         public SharedObjectList()
         {
+            Value = new List<Object>();
         }
     }
 }

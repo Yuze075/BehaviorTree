@@ -15,6 +15,7 @@ namespace YuzeToolkit.BehaviorTree.Runtime
 
         public SharedGameObjectList()
         {
+            Value = new List<GameObject>();
         }
     }
 }

@@ -13,6 +13,7 @@ namespace YuzeToolkit.BehaviorTree.Runtime
         
         public SharedIntList()
         {
+            Value = new List<int>();
         }
     }
 }

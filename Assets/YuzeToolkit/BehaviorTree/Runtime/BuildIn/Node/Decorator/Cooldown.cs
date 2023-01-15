@@ -12,36 +12,41 @@ namespace YuzeToolkit.BehaviorTree.Runtime
 
         protected override void OnStartUpdate()
         {
-            _cooldownBeforeTimer = 0;
+            _cooldownBeforeTimer = UnityEngine.Time.time;
             _cooldownAfterTimer = 0;
-            _returnState = BtState.Success;
+            _returnState = BtState.Running;
         }
 
         protected override BtState OnUpdate()
         {
-            _cooldownBeforeTimer += UnityEngine.Time.deltaTime;
-            if (!(_cooldownBeforeTimer >= cooldownBeforeTime.Value)) return BtState.Running;
-            if (_returnState != BtState.Running)
+            if (!(UnityEngine.Time.time - _cooldownBeforeTimer >= cooldownBeforeTime.Value)) return BtState.Running;
+            if (_returnState != BtState.Running && _cooldownAfterTimer == 0)
             {
-                _cooldownAfterTimer += UnityEngine.Time.deltaTime;
-                return _cooldownAfterTimer > cooldownAfterTime.Value ? _returnState : BtState.Running;
+                _cooldownAfterTimer = UnityEngine.Time.time;
             }
-            _returnState = Child.Update();
-            return BtState.Running;
+
+            if (_returnState == BtState.Running)
+            {
+                _returnState = Child.Update();
+            }
+
+            return UnityEngine.Time.time - _cooldownAfterTimer > cooldownAfterTime.Value && _cooldownAfterTimer != 0
+                ? _returnState
+                : BtState.Running;
         }
 
         protected override void OnAbort()
         {
             _cooldownBeforeTimer = 0;
             _cooldownAfterTimer = 0;
-            _returnState = BtState.Success;
+            _returnState = BtState.Running;
         }
 
         protected override void OnReset()
         {
             _cooldownBeforeTimer = 0;
             _cooldownAfterTimer = 0;
-            _returnState = BtState.Success;
+            _returnState = BtState.Running;
         }
     }
 }

@@ -13,6 +13,7 @@ namespace YuzeToolkit.BehaviorTree.Runtime
         
         public SharedFloatList()
         {
+            Value = new List<float>();
         }
     }
 }

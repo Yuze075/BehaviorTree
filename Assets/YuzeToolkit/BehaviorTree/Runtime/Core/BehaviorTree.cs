@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.Collections;
 using UnityEngine;
 
 namespace YuzeToolkit.BehaviorTree.Runtime
@@ -24,6 +23,7 @@ namespace YuzeToolkit.BehaviorTree.Runtime
         private Root _root = new();
         private List<INode> _updateNodes = new();
         private List<INode> _runningNodes = new();
+        private List<Conditional> _conditionals = new();
         private UpdateType _updateType;
         private string _describe;
         private bool _pauseStatus;
@@ -58,9 +58,10 @@ namespace YuzeToolkit.BehaviorTree.Runtime
         public bool PauseStatus { get; set; }
 
         public bool ResetStatus { get; set; }
-        
+
         public List<INode> UpdateNodes => _updateNodes;
         public List<INode> RunningNodes => _runningNodes;
+        public List<Conditional> Conditionals => _conditionals;
 
         public static int Id { get; set; }
 
@@ -80,14 +81,15 @@ namespace YuzeToolkit.BehaviorTree.Runtime
 
             blackBoard = gameObject.GetComponent<BlackBoard>();
             var so = Instantiate(behaviorTreeSo);
+            var bb = Instantiate(behaviorTreeSo.blackBoard as BlackBoardSo);
             _root = so.Root;
+            _describe = so.Describe;
             _updateType = so.UpdateType;
-            if (behaviorTreeSo.blackBoard != null)
+            if (bb != null)
             {
-                blackBoard.SharedVariables.AddRange(so.blackBoard.SharedVariables);
+                blackBoard.SharedVariables.AddRange(bb.SharedVariables);
                 blackBoard.Describe = blackBoard.Describe + "\n" + so.blackBoard.Describe;
             }
-
             blackBoard.InitializeBlackBoard();
             _nodes.Clear();
             Id = 0;
@@ -165,6 +167,8 @@ namespace YuzeToolkit.BehaviorTree.Runtime
             {
                 _root.Update();
             }
+
+            Conditionals.ForEach(conditional => conditional.IsUpdate = false);
         }
 
         #endregion

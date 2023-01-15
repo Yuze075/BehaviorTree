@@ -8,5 +8,6 @@ namespace YuzeToolkit.BehaviorTree.Runtime
         public bool ResetStatus { get; set; }
         public List<INode> UpdateNodes { get; }
         public List<INode> RunningNodes { get; }
+        public List<Conditional> Conditionals { get; }
     }
 }

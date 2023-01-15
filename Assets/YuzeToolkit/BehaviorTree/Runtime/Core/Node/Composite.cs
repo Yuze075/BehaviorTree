@@ -13,7 +13,7 @@ namespace YuzeToolkit.BehaviorTree.Runtime
 
         [UnityEngine.SerializeField] private AbortType abortType = AbortType.None;
 
-        [UnityEngine.SerializeReference , UnityEngine.HideInInspector] private System.Collections.Generic.List<INode> _children = new ();
+        [UnityEngine.SerializeReference] private System.Collections.Generic.List<INode> _children = new ();
 
         /// <summary>
         /// <see cref="AbortType"/>==<see cref="Runtime.AbortType.None"/>时, 调用更新的节点
@@ -119,11 +119,11 @@ namespace YuzeToolkit.BehaviorTree.Runtime
             {
                 OnStartUpdate();
             }
-            else if (AbortUpdate())
+            if (AbortUpdate())
             {
                 Children.ForEach(child =>
                 {
-                    if (child?.State == BtState.Running)
+                    if (child.State == BtState.Running)
                         child.Abort();
                 });
             }

@@ -13,6 +13,7 @@ namespace YuzeToolkit.BehaviorTree.Runtime
         
         public SharedSystemObjectList()
         {
+            Value = new List<object>();
         }
     }
 }

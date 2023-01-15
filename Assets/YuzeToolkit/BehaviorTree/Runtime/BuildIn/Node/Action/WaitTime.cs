@@ -11,20 +11,14 @@ namespace YuzeToolkit.BehaviorTree.Runtime
         [SerializeField] private SharedFloat time = new();
         private float _timer;
 
+        protected override void OnStartUpdate()
+        {
+            _timer = Time.time;
+        }
+
         protected override BtState OnUpdate()
         {
-            if (_timer >= time.Value)
-            {
-                _timer = 0;
-                State = BtState.Success;
-            }
-            else
-            {
-                _timer += Time.deltaTime;
-                State = BtState.Running;
-            }
-
-            return State;
+            return Time.time - _timer >= time.Value ? BtState.Success : BtState.Running;
         }
 
         protected override void OnAbort()

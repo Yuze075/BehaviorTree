@@ -1,0 +1,214 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45cea247c03d7de42a1c0d849b39492e, type: 3}
+  m_Name: NCell
+  m_EditorClassIdentifier: 
+  blackBoardSo: {fileID: 4382584337751531322}
+  root:
+    rid: 1053436917997633539
+  _nodes:
+  - rid: 1053436917997633539
+  - rid: 1053436917997633565
+  - rid: 1053436917997633566
+  - rid: 1053436917997633567
+  - rid: 1053436917997633568
+  - rid: 1053436917997633569
+  - rid: 1053436917997633570
+  - rid: 1053436917997633571
+  - rid: 1053436917997633572
+  - rid: 1053436917997633573
+  - rid: 1053436917997633603
+  - rid: 1053436917997633605
+  - rid: 1053436935888961995
+  updateType: 1
+  describe: BehaviorTree
+  viewPosition: {x: 492, y: 185, z: 0}
+  viewScale: {x: 0.57175326, y: 0.57175326, z: 1}
+  references:
+    version: 2
+    RefIds:
+    - rid: 1053436917997633539
+      type: {class: Root, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        position: {x: -336.8094, y: -185.72914}
+        guid: 18d6ad81-6cf5-463c-a107-adc28b1b65f8
+        description: this is a description
+        _child:
+          rid: 1053436917997633565
+    - rid: 1053436917997633565
+      type: {class: Selector, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        position: {x: -336.8094, y: -27.729134}
+        guid: dbd2a89e-3a54-45cc-87b2-667b2ffc0132
+        description: this is a description
+        abortType: 1
+        _children:
+        - rid: 1053436917997633566
+        - rid: 1053436917997633568
+    - rid: 1053436917997633566
+      type: {class: Sequence, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        position: {x: -509.80933, y: 138.27086}
+        guid: d3c236fc-0e37-4ee4-b83b-6c5fdcb9f743
+        description: this is a description
+        abortType: 4
+        _children:
+        - rid: 1053436917997633567
+        - rid: 1053436917997633573
+        - rid: 1053436917997633603
+        - rid: 1053436935888961995
+        - rid: 1053436917997633572
+    - rid: 1053436917997633567
+      type: {class: HasEnteredTrigger2D, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        position: {x: -803.8093, y: 298.27087}
+        guid: c2e27b0d-e303-430b-8e73-a874bb1ed2a6
+        description: this is a description
+        tag:
+          name: 
+          variable: Virus
+        layer:
+          name: 
+          variable:
+            serializedVersion: 2
+            m_Bits: 0
+        collidedGameObject:
+          name: 
+          variable: {fileID: 0}
+        collisionMode: 1
+    - rid: 1053436917997633568
+      type: {class: KeepIdle, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        position: {x: 53.190704, y: 138.27086}
+        guid: 4cafe84e-010c-4b08-9df5-76c81a897078
+        description: this is a description
+    - rid: 1053436917997633569
+      type: {class: Cooldown, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        position: {x: -246.80934, y: 442.27084}
+        guid: ce13ac9c-ca44-46ca-bf10-f55e13a9aebe
+        description: this is a description
+        _child:
+          rid: 1053436917997633570
+        cooldownBeforeTime:
+          name: 
+          variable: 10
+        cooldownAfterTime:
+          name: 
+          variable: 0
+    - rid: 1053436917997633570
+      type: {class: Repeater, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        position: {x: -246.80934, y: 558.2708}
+        guid: 38c15d65-ab83-45fb-a521-f53217aa79de
+        description: this is a description
+        _child:
+          rid: 1053436917997633571
+        count:
+          name: 
+          variable: 3
+    - rid: 1053436917997633571
+      type: {class: CreateGameObject, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: -246.80934, y: 670.2708}
+        guid: 71309da4-a455-46fc-8331-6a3321d50afd
+        description: this is a description
+        prefab:
+          name: prefab
+          variable: {fileID: 0}
+    - rid: 1053436917997633572
+      type: {class: DestroySelf, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: -171.80939, y: 298.27087}
+        guid: 627585d2-c20a-4356-9ffa-2d85e17802d5
+        description: this is a description
+    - rid: 1053436917997633573
+      type: {class: ChangeSprite, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: -659.8093, y: 298.27087}
+        guid: 9b8b26e7-5059-47ef-b36a-be73a2110856
+        description: this is a description
+        spriteObject:
+          name: sprite
+          variable: {fileID: 0}
+    - rid: 1053436917997633603
+      type: {class: ChangeTag, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: -503.8094, y: 298.27087}
+        guid: 288d48a3-360f-4c11-8ed3-e18c48f8ce94
+        description: this is a description
+        tag:
+          name: 
+          variable: INCell
+    - rid: 1053436917997633605
+      type: {class: HasEnteredTrigger2D, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        position: {x: -434.80936, y: 442.27084}
+        guid: 56af2589-563b-4ef0-9098-40eabed14d06
+        description: this is a description
+        tag:
+          name: 
+          variable: TCell
+        layer:
+          name: 
+          variable:
+            serializedVersion: 2
+            m_Bits: 0
+        collidedGameObject:
+          name: 
+          variable: {fileID: 0}
+        collisionMode: 1
+    - rid: 1053436935888961995
+      type: {class: ParallelKeep, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        position: {x: -336.8094, y: 298.27087}
+        guid: ce5b7f6f-9f6f-42d0-bd93-0c513d936c28
+        description: this is a description
+        abortType: 1
+        _children:
+        - rid: 1053436917997633605
+        - rid: 1053436917997633569
+        successCount:
+          name: 
+          variable: 1
+        failureCount:
+          name: 
+          variable: 0
+--- !u!114 &4382584337751531322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14ff47958611480999226f8ef8252c7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sharedVariables:
+  - rid: 1053436935888961996
+  - rid: 1053436939101536499
+  describe: BlackBoardSo
+  references:
+    version: 2
+    RefIds:
+    - rid: 1053436935888961996
+      type: {class: SharedGameObject, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        name: prefab
+        variable: {fileID: 0}
+    - rid: 1053436939101536499
+      type: {class: SharedObject, ns: YuzeToolkit.BehaviorTree.Runtime, asm: Assembly-CSharp}
+      data:
+        name: sprite
+        variable: {fileID: 0}
